@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Employee Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+  <body>
+    {% include 'emp/navbar.html' %}
+    <h1 class="text-center my-3">Update Employee</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card bg-dark text-white">
+            <div class="card-body">
+              <form action="/emp/do-update-emp/{{emp.id}}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="name">Employee name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter emp name"
+                    name="emp_name"
+                    value="{{emp.name}}"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="id">Employee id</label>
+                  <input
+                    id="id"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter emp id"
+                    name="emp_id"
+                    value="{{emp.emp_id}}"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="phone">phone</label>
+                  <input
+                    id="phone"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter emp phone"
+                    name="emp_phone"
+                    value="{{emp.phone}}"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="address">Employee Address</label>
+                  <textarea
+                    name="emp_address"
+                    id="address"
+                    rows="5"
+                    class="form-control"
+                  >{{emp.address}}</textarea>
+                </div>
+                <div class="mb-3 form-check">
+                  <label for="working">Working</label>
+                  <input {% if emp.working %} checked {% endif %} id="working" name="emp_working" type="checkbox" class="form-check-input">
+                </div>
+                <div class="mb-3 ">
+                  <label for="department">Departments</label>
+                  <select value="{{emp.department}}" name="emp_department" id="department" class="form-control">
+                      <option value="CSE">Computer Science</option>
+                      <option value="ME">Mechanical Engg</option>
+                      <option value="EE">Electrical Engg</option>
+                  </select>
+                </div>
+                <div class="container text-center">
+                    <button class="btn btn-success">
+                        Update Employee
+                    </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>
